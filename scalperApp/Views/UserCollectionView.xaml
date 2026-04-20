@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="scalperApp.Views.UserCollectionView"
+             xmlns:Views="clr-namespace:scalperApp.Views"
+             Title="UserCollectionView">
+    <VerticalStackLayout>
+        <Label Text="{Binding Name}"></Label>
+        <Grid RowDefinitions="Auto" ColumnDefinitions="*,*">
+        </Grid>
+
+        <HorizontalStackLayout Spacing="8">
+            <Editor Text="{Binding NewItemName}" ></Editor>
+            <Button Text="+ Add" Command="{Binding AddItemCommand}" Margin="10" Grid.Column="1"/>
+            <Button Text="X Delete" Command="{Binding RemoveItemCommand}" />
+            <Button Text="Edit" Command="{Binding EditItemCommand}" />
+        </HorizontalStackLayout>
+
+        <CollectionView ItemsSource="{Binding Items}"
+                         SelectionMode="Single"
+                         SelectedItem="{Binding SelectedItem}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"  />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Views:ItemView></Views:ItemView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

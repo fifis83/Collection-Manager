@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="scalperApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:scalperApp"
+    xmlns:views="clr-namespace:scalperApp.Views"
+    Title="scalperApp">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate views:NewPage1}"
+        Route="MainPage" />
+
+</Shell>
