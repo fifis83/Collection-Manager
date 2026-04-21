@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="scalperApp.Views.SummaryView"
+             Title="Summary"
+             BackgroundColor="#121212">
+    <VerticalStackLayout Padding="16" Spacing="12">
+        <Border Padding="16" BackgroundColor="#1F1F1F" Stroke="#333333" StrokeThickness="1">
+            <Label x:Name="CollectionName" FontSize="25" FontAttributes="Bold" TextColor="#FFFFFF"/>
+        </Border>
+        <Border Padding="16" BackgroundColor="#1F1F1F" Stroke="#333333" StrokeThickness="1">
+            <Label x:Name="ItemCount" FontSize="21" TextColor="#AAAAAA"/>
+        </Border>
+        <Border Padding="16" BackgroundColor="#1F1F1F" Stroke="#333333" StrokeThickness="1">
+            <Label x:Name="SoldCount" FontSize="21" TextColor="#AAAAAA"/>
+        </Border>
+        <Border Padding="16" BackgroundColor="#1F1F1F" Stroke="#333333" StrokeThickness="1">
+            <Label x:Name="WantToSellCount" FontSize="21" TextColor="#AAAAAA"/>
+        </Border>
+    </VerticalStackLayout>
+</ContentPage>

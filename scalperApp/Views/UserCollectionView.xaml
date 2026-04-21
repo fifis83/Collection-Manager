@@ -3,28 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="scalperApp.Views.UserCollectionView"
              xmlns:Views="clr-namespace:scalperApp.Views"
-             Title="UserCollectionView">
-    <VerticalStackLayout>
-        <Label Text="{Binding Name}"></Label>
-        <Grid RowDefinitions="Auto" ColumnDefinitions="*,*">
-        </Grid>
+             Title="Collection"
+             BackgroundColor="#121212">
+    <VerticalStackLayout Padding="16" Spacing="12">
+        <Label Text="{Binding Name}" FontSize="29" FontAttributes="Bold" TextColor="#FFFFFF" HorizontalTextAlignment="Center"/>
 
-        <HorizontalStackLayout Spacing="8">
-            <Editor Text="{Binding NewItemName}" ></Editor>
-            <Button Text="+ Add" Command="{Binding AddItemCommand}" Margin="10" Grid.Column="1"/>
-            <Button Text="X Delete" Command="{Binding RemoveItemCommand}" />
-            <Button Text="Edit" Command="{Binding EditItemCommand}" />
+        <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+            <Button Text="Add Item" Command="{Binding AddItemCommand}" BackgroundColor="#2E7D32" TextColor="#FFFFFF" Padding="12,8" FontSize="17" FontAttributes="Bold"/>
+            <Button Text="Edit" Command="{Binding EditItemCommand}" BackgroundColor="#1976D2" TextColor="#FFFFFF" Padding="12,8" FontSize="17"/>
+            <Button Text="Summary" Command="{Binding OpenSummaryCommand}" BackgroundColor="#F57C00" TextColor="#FFFFFF" Padding="12,8" FontSize="17"/>
+            <Button Text="Delete" Command="{Binding RemoveItemCommand}" BackgroundColor="#D32F2F" TextColor="#FFFFFF" Padding="12,8" FontSize="17"/>
         </HorizontalStackLayout>
 
-        <CollectionView ItemsSource="{Binding Items}"
-                         SelectionMode="Single"
-                         SelectedItem="{Binding SelectedItem}">
+        <Border Padding="12" BackgroundColor="#1F1F1F" Stroke="#333333" StrokeThickness="1">
+            <Grid RowDefinitions="Auto" ColumnDefinitions="2*,*,*,*,*,*" ColumnSpacing="8">
+                <Label Grid.Column="0" Text="Item" FontSize="17" FontAttributes="Bold" TextColor="#AAAAAA"/>
+                <Label Grid.Column="1" Text="Price" FontSize="17" FontAttributes="Bold" TextColor="#AAAAAA"/>
+                <Label Grid.Column="2" Text="Condition" FontSize="17" FontAttributes="Bold" TextColor="#AAAAAA"/>
+                <Label Grid.Column="3" Text="Want to sell" FontSize="17" FontAttributes="Bold" TextColor="#AAAAAA"/>
+                <Label Grid.Column="4" Text="Sold" FontSize="17" FontAttributes="Bold" TextColor="#AAAAAA"/>
+                <Label Grid.Column="5" Text="Sell button" FontSize="17" FontAttributes="Bold" TextColor="#AAAAAA"/>
+            </Grid>
+        </Border>
+        <CollectionView ItemsSource="{Binding Items}" SelectionMode="Single" SelectedItem="{Binding SelectedItem}">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical"  />
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="0"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Views:ItemView></Views:ItemView>
+                    <Views:ItemView/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

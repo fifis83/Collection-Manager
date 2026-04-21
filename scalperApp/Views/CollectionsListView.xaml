@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:scalperApp.ViewModels"
+             x:Class="scalperApp.Views.CollectionsListView"
+             Title="Collections"
+             BackgroundColor="#121212">
+    <ContentPage.BindingContext>
+        <viewmodels:CollectionsListViewModel/>
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="16" Spacing="16">
+        <Grid RowDefinitions="Auto" ColumnDefinitions="*,Auto" ColumnSpacing="12">
+            <Editor Text="{Binding NewCollectionName}" 
+                    Placeholder="Collection name"
+                    BackgroundColor="#1F1F1F"
+                    TextColor="#FFFFFF"
+                    PlaceholderColor="#888888"
+                    FontSize="19"/>
+            <Button Text="Add" 
+                    Command="{Binding AddCollectionCommand}" 
+                    Grid.Column="1"
+                    BackgroundColor="#2E7D32"
+                    TextColor="#FFFFFF"
+                    Padding="16,12"
+                    FontAttributes="Bold"/>
+        </Grid>
+
+        <CollectionView ItemsSource="{Binding Collections}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedCollection}"
+                        SelectionChangedCommand="{Binding OpenCollectionPageCommand}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="8"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="16" Margin="0" BackgroundColor="#1F1F1F" Stroke="#333333" StrokeThickness="1">
+                        <Grid RowDefinitions="Auto" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+                            <Label Text="{Binding Name}" 
+                                   FontSize="21"
+                                   FontAttributes="Bold"
+                                   TextColor="#FFFFFF"
+                                   VerticalOptions="Center"/>
+                            <Button Text="Edit" 
+                                    Grid.Column="1"
+                                    BackgroundColor="#1976D2"
+                                    TextColor="#FFFFFF"
+                                    Padding="12,8"
+                                    Command="{Binding EditCollectionCommand}"
+                                    FontSize="17"/>
+                            <Button Text="Delete" 
+                                    Grid.Column="2"
+                                    BackgroundColor="#D32F2F"
+                                    TextColor="#FFFFFF"
+                                    Padding="12,8"
+                                    Command="{Binding DeleteCollectionCommand}"
+                                    FontSize="17"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

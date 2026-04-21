@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:services="clr-namespace:scalperApp.Services"
              x:Class="scalperApp.Views.ItemView">
-    <Border Padding="10,8" >
-        <Grid ColumnDefinitions="Auto" ColumnSpacing="12">
-            <Label Grid.Column="0"
-                   Text="{Binding Name}"/>
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <services:Base64ToImageSourceConverter x:Key="Base64ToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Border Padding="12" Margin="0,4" BackgroundColor="{Binding BgColor}" Stroke="#333333" StrokeThickness="1">
+        <Grid RowDefinitions="Auto" ColumnDefinitions="*,*,*,*,*,*,*" ColumnSpacing="12">
+            <Image Grid.Column="0" Source="{Binding ImgBlob, Converter={StaticResource Base64ToImageSourceConverter}}" HeightRequest="80" WidthRequest="80" Aspect="AspectFill"/>
+            <Label Grid.Column="1" Text="{Binding Name}" FontSize="19" FontAttributes="Bold" TextColor="#FFFFFF" VerticalOptions="Center"/>
+            <Label Grid.Column="2" Text="{Binding Price, StringFormat='{0:F2}zł'}" FontSize="17" TextColor="#AAAAAA" VerticalOptions="Center"/>
+            <Label Grid.Column="3" Text="{Binding Condition}" FontSize="17" TextColor="#AAAAAA" VerticalOptions="Center"/>
+            <Label Grid.Column="4" Text="{Binding WantToSell}" FontSize="17" TextColor="#AAAAAA" VerticalOptions="Center"/>
+            <Label Grid.Column="5" Text="{Binding Sold}" FontSize="17" TextColor="#AAAAAA" VerticalOptions="Center"/>
+            <Button Grid.Column="6" Text="{Binding SellBtnText}" Command="{Binding SellCommand}" BackgroundColor="#1976D2" TextColor="#FFFFFF" Padding="8" FontSize="16" FontAttributes="Bold"/>
         </Grid>
     </Border>
 </ContentView>

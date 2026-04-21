@@ -5,11 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:scalperApp"
     xmlns:views="clr-namespace:scalperApp.Views"
-    Title="scalperApp">
+    Title="Collection Manager"
+    BackgroundColor="#121212">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:NewPage1}"
-        Route="MainPage" />
+        ContentTemplate="{DataTemplate views:CollectionsListView}"
+        Route="Main Page" />
 
 </Shell>

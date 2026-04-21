@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="scalperApp.Views.ItemInputView"
+             xmlns:services="clr-namespace:scalperApp.Services"
+             Title="{Binding TitleText}"
+             BackgroundColor="#1F1F1F">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <services:Base64ToImageSourceConverter x:Key="Base64ToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout Padding="16" Spacing="12">
+        <Image Source="{Binding ImgBlob, Converter={StaticResource Base64ToImageSourceConverter}}" HeightRequest="180" WidthRequest="180" Aspect="AspectFill"/>
+        <Button Text="Select Image" Command="{Binding SelectImageCommand}" BackgroundColor="#1976D2" TextColor="White" Padding="12" FontAttributes="Bold"/>
+
+        <Label Text="Name" FontSize="19" FontAttributes="Bold" TextColor="#FFFFFF"/>
+        <Editor Text="{Binding ItemName}" BackgroundColor="#1F1F1F" TextColor="#FFFFFF" PlaceholderColor="#AAAAAA"  FontSize="19"/>
+
+        <Label Text="Price" FontSize="19" FontAttributes="Bold" TextColor="#FFFFFF"/>
+        <Editor Text="{Binding ItemPrice}" BackgroundColor="#1F1F1F" TextColor="#FFFFFF"  FontSize="19"/>
+
+        <Label Text="Condition" FontSize="19" FontAttributes="Bold" TextColor="#FFFFFF"/>
+        <Picker SelectedItem="{Binding ItemCondition}" SelectedIndex="0" BackgroundColor="#1F1F1F" TextColor="#FFFFFF">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>New</x:String>
+                    <x:String>Used</x:String>
+                    <x:String>Damaged</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <HorizontalStackLayout Padding="0" Spacing="8">
+            <CheckBox IsChecked="{Binding WantToSell}" Scale="1.2"/>
+            <Label Text="I want to sell this item" FontSize="19" TextColor="#FFFFFF" VerticalOptions="Center"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout Spacing="8">
+            <Button Text="Confirm" Command="{Binding ConfirmCommand}" BackgroundColor="#2E7D32" TextColor="White" Padding="12" FontAttributes="Bold"/>
+            <Button Text="Cancel" Command="{Binding CloseWindowCommand}" BackgroundColor="#D32F2F" TextColor="White" Padding="12" FontAttributes="Bold"/>
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>

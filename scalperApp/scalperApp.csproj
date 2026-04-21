@@ -73,14 +73,40 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Services\" />
+	  <Compile Update="Views\ItemInputView.xaml.cs">
+	    <DependentUpon>ItemInputView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\CollectionsListView.xaml.cs">
+	    <DependentUpon>CollectionsListView.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views - Copy\ItemInputView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views - Copy\ItemView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views - Copy\NewPage1.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views - Copy\SummaryView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views - Copy\UserCollectionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ItemInputView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ItemView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\NewPage1.xaml">
+	  <MauiXaml Update="Views\CollectionsListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SummaryView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\UserCollectionView.xaml">
