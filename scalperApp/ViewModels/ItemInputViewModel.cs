@@ -13,21 +13,72 @@ namespace scalperApp.ViewModels
 
         public ICommand ConfirmCommand { get; }
 
-        ItemViewModel itemViewModel;
+        ItemViewModel editingViewModel;
 
-        public string ItemName { get; set; } = string.Empty;
-        public float ItemPrice { get; set; } = 0.0f;
-        public string ItemCondition { get; set; } = string.Empty;
-        public bool WantToSell { get; set; } = false;
-        public string ImgBlob { get; set; } = "";
-        
+        ItemModel itemModel;
+
+        public string ItemName
+        {
+            get
+            {
+                return itemModel.Name;
+            }
+            set { 
+                itemModel.Name = value;
+            }
+        }
+        public float ItemPrice
+        {
+            get
+            {
+                return itemModel.Price;
+            }
+            set
+            {
+                itemModel.Price = value;
+            }
+        }
+        public string ItemCondition
+        {
+            get
+            {
+                return itemModel.Condition;
+            }
+            set
+            {
+                itemModel.Condition = value;
+            }
+        }
+        public bool WantToSell
+        {
+            get
+            {
+                return itemModel.WantToSell;
+            }
+            set
+            {
+                itemModel.WantToSell = value;
+            }
+        }
+        public string ImgBlob
+        {
+            get
+            {
+                return itemModel.ImgBlob;
+            }
+            set
+            {
+                itemModel.ImgBlob = value;
+            }
+        }
+
 
 
         public ItemInputViewModel()
         {
             TitleText = "New Item";
             userCollection = Shell.Current.CurrentPage.BindingContext as UserCollectionViewModel;
-
+            itemModel = new ItemModel();
             ConfirmCommand = new AsyncRelayCommand(AddItem);
         }
 
@@ -35,13 +86,16 @@ namespace scalperApp.ViewModels
         {
             TitleText = "Edit an item";
             userCollection = Shell.Current.CurrentPage.BindingContext as UserCollectionViewModel;
+            itemModel = new ItemModel();
 
             ItemName = itemViewModel.Name;
             ItemPrice = itemViewModel.Price;
             ItemCondition = itemViewModel.Condition;
             WantToSell = itemViewModel.WantToSell;
             ImgBlob = itemViewModel.ImgBlob;
-            this.itemViewModel = itemViewModel;
+
+            editingViewModel = itemViewModel;
+
             ConfirmCommand = new AsyncRelayCommand(EditItem);
         }
 
@@ -54,7 +108,7 @@ namespace scalperApp.ViewModels
                 if (!result) return;
             }
 
-            userCollection.AddItemToCollection(new ItemModel(ItemName, ItemPrice, ItemCondition, WantToSell,imgBlob:ImgBlob));
+            userCollection.AddItemToCollection(itemModel);
             userCollection.RefreshItems();
 
             CloseWindow();
@@ -64,17 +118,17 @@ namespace scalperApp.ViewModels
         {
             if (!await ValidateInput()) return;
 
-            if (ItemName != itemViewModel.Name && CheckIfItemAlreadyExists())
+            if (ItemName != editingViewModel.Name && CheckIfItemAlreadyExists())
             {
                 bool result = await EditingPage.DisplayAlertAsync("Warning", "An item with this name already exists.\nDo you wish to proceed?", "Proceed", "Cancel");
                 if (!result) return;
             }
-            itemViewModel.Name = ItemName;
-            itemViewModel.Price = ItemPrice;
-            itemViewModel.Condition = ItemCondition;
-            itemViewModel.WantToSell = WantToSell;
-            itemViewModel.ImgBlob = ImgBlob;
-            itemViewModel.RefreshItem();
+            editingViewModel.Name = ItemName;
+            editingViewModel.Price = ItemPrice;
+            editingViewModel.Condition = ItemCondition;
+            editingViewModel.WantToSell = WantToSell;
+            editingViewModel.ImgBlob = ImgBlob;
+            editingViewModel.RefreshItem();
 
             userCollection.RefreshItems();
             CloseWindow();
